@@ -35,13 +35,13 @@ public class Bot extends TelegramLongPollingBot {
     private final String TOKEN = "token";
 
     private String[] messagesForUserOfTheDay = {
-            "\uD83C\uDF89 Сегодня красавчик дня - ",
+            "Сегодня свиноколбас дня - ",
             "ВНИМАНИЕ \uD83D\uDD25",
-            "Ищем красавчика в этом чате",
-            "Гадаем на бинарных опционах \uD83D\uDCCA",
-            "Анализируем лунный гороскоп \uD83C\uDF16",
-            "Лунная призма дай мне силу \uD83D\uDCAB",
-            "СЕКТОР ПРИЗ НА БАРАБАНЕ \uD83C\uDFAF"
+            "Ищем свиноколбаса в этом чате",
+            "Звоним в роспотребнадзор \uD83D\uDCCA",
+            "Шарим по соседской ферме \uD83C\uDF16",
+            "Пристально смотрим на Лизу \uD83D\uDCAB",
+            "БОТ ТУПОЙ ЛЮДИ ТУПЕЕ \uD83C\uDFAF"
     };
     private String[] messagesForLoserOfTheDay = {
             "\uD83C\uDF89 Сегодня неудачник \uD83C\uDF08 дня - ",
@@ -54,7 +54,7 @@ public class Bot extends TelegramLongPollingBot {
 
     };
     //for DB
-    private String URL = "jdbc:mysql://localhost:3306/chats_users_db";
+    private String URL = "jdbc:mysql://localhost:3306/telegram";
     private String LOGIN = "root";
     private String PASSWORD = "root";
 
@@ -105,14 +105,14 @@ public class Bot extends TelegramLongPollingBot {
         switch (game){
             case user_of_the_day:
                 if (dbHandler.isTheSameDayRunning(chatId,getToday(), DBColumns.user_of_the_day_run_day)) {
-                    sendMsg(chatId,messagesForUserOfTheDay[0] + dbHandler.getWinnerOfTheGame(chatId,Games.user_of_the_day));
+                    sendMsg(chatId,messagesForUserOfTheDay[0] + "` " + dbHandler.getWinnerOfTheGame(chatId,Games.user_of_the_day) + " `");
                     return;
                 }
                 messages = messagesForUserOfTheDay;
                 break;
             case loser_of_the_day:
                 if (dbHandler.isTheSameDayRunning(chatId,getToday(), DBColumns.loser_of_the_day_run_day)) {
-                    sendMsg(chatId, messagesForLoserOfTheDay[0] + dbHandler.getWinnerOfTheGame(chatId,Games.loser_of_the_day));
+                    sendMsg(chatId, messagesForLoserOfTheDay[0] + "` " + dbHandler.getWinnerOfTheGame(chatId,Games.loser_of_the_day) + " `");
                     return;
                 }
                 messages = messagesForLoserOfTheDay;

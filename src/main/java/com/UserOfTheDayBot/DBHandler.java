@@ -29,6 +29,7 @@ public class DBHandler {
         properties.put("useSSL", "false");
         properties.put("useLegacyDatetimeCode", "false");
         properties.put("serverTimezone", "UTC");
+	properties.put("allowPublicKeyRetrieval", "true");
         try {
             DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver());
             connection =  DriverManager.getConnection(url,properties);
